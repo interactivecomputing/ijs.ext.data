@@ -1,0 +1,35 @@
+{
+  "name": "ijs.ext.data",
+  "version": "0.1.0",
+  "description": "IJavaScript extension for working with data interactively.",
+  "keywords": [
+    "interactive",
+    "javascript",
+    "ijs",
+    "ijavascript",
+    "ipython",
+    "notebook",
+    "repl",
+    "console",
+    "ide",
+    "editor",
+    "data",
+    "dataset"
+  ],
+  "author": {
+    "author": "Nikhil Kothari",
+    "url": "http://www.nikhilk.net"
+  },
+  "license": "Apache 2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/interactivecomputing/ijs.ext.data"
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+  },
+  "files": [ "src" ],
+  "main": "src/index.js"
+}
