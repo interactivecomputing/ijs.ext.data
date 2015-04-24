@@ -1,6 +1,6 @@
 {
   "name": "ijs.ext.data",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "IJavaScript extension for working with data interactively.",
   "keywords": [
     "interactive",

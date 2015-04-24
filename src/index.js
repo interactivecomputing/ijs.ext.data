@@ -14,9 +14,21 @@
 // The ijs extension implementation.
 //
 
+var CROSSFILTER_SCRIPT_URL =
+  '//cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.11/crossfilter.min.js';
+var DCJS_SCRIPT_URL = '//cdnjs.cloudflare.com/ajax/libs/dc/1.7.3/dc.min.js';
+
 function initialize(shell, callback) {
+  // The result of loading the extension is a small bit of client-side script.
+
+  // In particular this script adds requirejs config to be able to load
+  // the crossfilter and dcjs on the client.
+
+  var script = 'require.config({ paths: { crossfilter: "%s", dc: "%s" } });';
+  script = util.format(script, CROSSFILTER_SCRIPT_URL, DCJS_SCRIPT_URL);
+
   process.nextTick(function() {
-    callback(null, null);
+    callback(null, shell.runtime.data.script(script));
   });
 }
 
