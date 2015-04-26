@@ -29,7 +29,10 @@
     "node": "0.10.x"
   },
   "dependencies": {
+    "csv-parse": "^0.1.1"
   },
-  "files": [ "src" ],
+  "files": [
+    "src"
+  ],
   "main": "src/index.js"
 }

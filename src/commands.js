@@ -16,23 +16,27 @@
 
 var fs = require('fs'),
     util = require('util');
+var dataLoader = require('./dataLoader');
 
 
 // Implements the %%dataset command, that can be used to load a dataset.
 function datasetCommand(shell, args, text, evaluationId) {
-  var data;
-  if (args.type == 'json') {
-    data = JSON.parse(fs.readFileSync(args.data, { encoding: 'utf8' }));
-  }
-  else if (args.type == 'csv') {
-    //code
-  }
+  return shell.runtime.async(function(deferred) {
+    dataLoader.load(args.data, args.type, function(err, data) {
+      if (err) {
+        deferred.reject(err);
+        return;
+      }
 
-  var datasetScript = util.format('window.%s = crossfilter(%s);', args.name, JSON.stringify(data));
+      var datasetScript = util.format('window.%s = crossfilter(%s);',
+                                      args.name, JSON.stringify(data));
 
-  return shell.runtime.data.html('')
-              .addScript(datasetScript)
-              .addDependency('crossfilter', 'crossfilter');
+      var result = shell.runtime.data.html('')
+                        .addScript(datasetScript)
+                        .addDependency('crossfilter', 'crossfilter');
+      deferred.resolve(result);
+    })
+  });
 }
 datasetCommand.options = function(parser) {
   return parser
